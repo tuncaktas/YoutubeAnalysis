@@ -41,7 +41,7 @@ export default function Home() {
               placeholder="Paste YouTube channel URL"
               value={url}
               onChangeText={setUrl}
-              className="flex-1 text-base"
+              className="flex-1 h-10 text-base"
             />
             
             <Pressable 
