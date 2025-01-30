@@ -2,6 +2,8 @@ import { Stack, Link } from 'expo-router';
 import { View, Text, TextInput, ScrollView, Image, Pressable } from 'react-native';
 import { useState } from 'react';
 
+import { supabase } from '~/lib/supabase';
+
 // Mock data - replace with real data later
 const popularChannels = [
   { id: '1', name: 'MKBHD', image: 'https://yt3.googleusercontent.com/lkH37D712tiyphnu0Id0D5MwwQ7IRuwgQLVD05iMXlDWO-kDHut3uI4MgIEAQ9StK25H6PN8=s176-c-k-c0x00ffffff-no-rj' },
@@ -10,7 +12,13 @@ const popularChannels = [
 ];
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [url, setUrl] = useState('');
+
+  const startAnalyzing = async () => {
+    const{error, data} =await supabase.functions.invoke('trigger_collection_api', {body: { url}});
+    console.log('error: ', error);
+    console.log('data: ', data);
+  };
   
   return (
     <>
@@ -31,15 +39,17 @@ export default function Home() {
           <View className="bg-gray-100 rounded-xl p-4 flex-row items-center">
             <TextInput
               placeholder="Paste YouTube channel URL"
-              value={searchQuery}
-              onChangeText={setSearchQuery}
+              value={url}
+              onChangeText={setUrl}
               className="flex-1 text-base"
             />
-            <Link href="/channel" asChild>
-              <Pressable className="bg-red-500 rounded-lg px-6 py-3 ml-2">
-                <Text className="text-white font-semibold">Analyze</Text>
-              </Pressable>
-            </Link>
+            
+            <Pressable 
+              onPress={startAnalyzing} 
+              className="bg-red-500 rounded-lg px-6 py-3 ml-2">
+              <Text className="text-white font-semibold">Analyze</Text>
+            </Pressable>
+            
           </View>
         </View>
 
