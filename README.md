@@ -47,15 +47,11 @@ npx expo start
    ```
 
 ## 🚀 Usage
-- Open the app and select a video to analyze.
-- View AI-generated summaries and key points.
-- Log in to access saved content.
+- Open the app and enter a youtube url to analyze.
+- View AI-generated summaries and highlight
 
-## 📌 Contributing
-To contribute, please submit a **pull request** or open an **issue**.
 
-## 📄 License
-This project is licensed under the **MIT License**.
 
----
-✨ **Developed by [Your Name](https://github.com/yourprofile)**
+
+
+
